@@ -17,9 +17,6 @@ typedef struct {
 	bool visiting;
 } visit_t;
 
-/*check a pointer has been successful in malloc acquisition*/
-void check_malloc(void* pointer);
-
 /* prints defined debug message if debugging is on */
 void debug(char* message){
 	if (DEBUG){

@@ -52,13 +52,11 @@ void print_vertex(Vertex vertex, FILE* file){
 	if (vertex->out != NULL){
 		fprintf(file, "%s -> {  ", vertex->label);
 		
-		/* here the variable backwards is a list of edges */
 		backwards = (List)malloc(len(vertex->out)*sizeof(struct list_t));
 		check_malloc(backwards);
 		backwards = reverse(vertex->out);
 		current = backwards;
 		
-		/* print out all edge labels in order */
 		while(current != NULL){
 			
 			fprintf(file, "%s  ", ((Vertex)(current->data))->label);
@@ -121,7 +119,6 @@ Graph load_graph(char *input) {
 		if(DEBUG){fprintf(stderr, "pre while loop\n");};
 		while (fscanf(outline, "%d %d\n", &v1, &v2) != EOF){
 			if(DEBUG){fprintf(stderr, "while loop iteration\n");};
-			
 			size++;
 			
 			if(DEBUG){fprintf(stderr, "pre add_edge\n v1 is %d v2 is %d\n", 

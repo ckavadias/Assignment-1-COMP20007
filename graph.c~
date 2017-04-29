@@ -18,16 +18,21 @@ void check_and_link(List* first, Vertex second);
 void link_edge(List* from, Vertex to);
 
 /*check a pointer has been successful in malloc acquisition*/
-void check_malloc(void* pointer);
+void check_malloc_1(void* pointer){
+	if(!pointer){
+		fprintf(stderr, "Malloc error, abort");
+		exit(EXIT_FAILURE);
+	}
+}
 
 /* Returns a pointer to a new graph with order vertices */
 Graph new_graph(int order) {
     Graph graph;
     
     graph = (Graph)malloc(sizeof(struct graph_t));
-    check_malloc(graph);
+    check_malloc_1(graph);
     graph->vertices = (Vertex)malloc(order*sizeof(struct vertex_t));
-    check_malloc(graph->vertices);
+    check_malloc_1(graph->vertices);
     graph->order = order;
     graph->size = ZERO;
     
@@ -66,7 +71,7 @@ void link_edge(List* from, Vertex to){
 	
 	if(DEBUG){fprintf(stderr, "link edge initates\n");};
 	 *from = (List)malloc(sizeof(struct list_t));
-	 check_malloc(*from);
+	 check_malloc_1(*from);
 	(*from)->data = to;
 	(*from)->next = NULL;
 	
